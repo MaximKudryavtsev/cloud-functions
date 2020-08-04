@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1a3b89f2-4102-48d7-a250-1b6010732df8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/functions.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="d9abfecb-0593-4905-9205-f35d0cf0711b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../cloud-functions/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cloud-functions/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cloud-functions/.prettierrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cloud-functions/src/config/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cloud-functions/src/context/AppContext.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cloud-functions/src/entity/config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cloud-functions/src/pages/Main.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cloud-functions/src/pages/Users.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service-key/service-key.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.firebaserc" beforeDir="false" afterPath="$PROJECT_DIR$/../.firebaserc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cloud-functions/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../cloud-functions/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../cloud-functions/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../cloud-functions/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cloud-functions/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../cloud-functions/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cloud-functions/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../cloud-functions/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../firebase.json" beforeDir="false" afterPath="$PROJECT_DIR$/../firebase.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tslint.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,30 +35,89 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="1fbPiy8rn3ouxp7vMbxJPelPR0c" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="1fcmsYIHoNjBhfQ5mvvgfdaZIHt" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/service-key" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="ts.external.directory.path" value="C:\cloud-functions\functions\node_modules\typescript\lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\cloud-functions\functions\src\service-key" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.deploy">
+    <configuration name="deploy" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="deploy" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="serve" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="serve" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.deploy" />
+        <item itemvalue="npm.serve" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="1a3b89f2-4102-48d7-a250-1b6010732df8" name="Default Changelist" comment="" />
-      <created>1596483950294</created>
+      <changelist id="d9abfecb-0593-4905-9205-f35d0cf0711b" name="Default Changelist" comment="" />
+      <created>1596525961490</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1596483950294</updated>
-      <workItem from="1596483951338" duration="953000" />
+      <updated>1596525961490</updated>
+      <workItem from="1596525962626" duration="5861000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1596540804227">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1596540804227" />
+    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1596540804226">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1596540804226" />
+    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1596540804226">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1596540804226" />
+    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1596540804226">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1596540804226" />
   </component>
 </project>

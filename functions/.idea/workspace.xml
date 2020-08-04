@@ -2,30 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9abfecb-0593-4905-9205-f35d0cf0711b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../cloud-functions/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../cloud-functions/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../cloud-functions/.prettierrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../cloud-functions/src/config/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../cloud-functions/src/context/AppContext.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../cloud-functions/src/entity/config.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../cloud-functions/src/pages/Main.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../cloud-functions/src/pages/Users.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service-key/service-key.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.firebaserc" beforeDir="false" afterPath="$PROJECT_DIR$/../.firebaserc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cloud-functions/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../cloud-functions/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cloud-functions/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../cloud-functions/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cloud-functions/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../cloud-functions/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cloud-functions/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../cloud-functions/yarn.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../firebase.json" beforeDir="false" afterPath="$PROJECT_DIR$/../firebase.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cloud-functions/src/pages/Main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../cloud-functions/src/pages/Main.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tslint.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,29 +74,53 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1596525961490</updated>
-      <workItem from="1596525962626" duration="5861000" />
+      <workItem from="1596525962626" duration="8675000" />
     </task>
+    <task id="LOCAL-00001" summary="add examples of using cloud functions">
+      <created>1596546270463</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1596546270463</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add examples of using cloud functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="add examples of using cloud functions" />
+  </component>
   <component name="WindowStateProjectService">
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1596540804227">
+    <state x="585" y="107" key="CommitChangelistDialog2" timestamp="1596546269801">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1596540804227" />
-    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1596540804226">
+    <state x="585" y="107" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1596546269801" />
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1596551641709">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1596540804226" />
-    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1596540804226">
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1596551641709" />
+    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1596551641709">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1596540804226" />
-    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1596540804226">
+    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1596551641709" />
+    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1596551641709">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1596540804226" />
+    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1596551641709" />
+    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1596551641709">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1596551641709" />
+    <state x="812" y="222" key="RollbackChangesDialog" timestamp="1596546241166">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="812" y="222" key="RollbackChangesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1596546241166" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1596546272324">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1596546272324" />
   </component>
 </project>

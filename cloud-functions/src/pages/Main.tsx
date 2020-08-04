@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Card, TextField, Button } from "@material-ui/core";
+import { Card, TextField, Button, IconButton } from "@material-ui/core";
 import { css } from "emotion";
 import { fb } from "../App";
 import { Link } from "react-router-dom";
+import { Delete } from "@material-ui/icons";
 
 const styles = {
     container: css`
@@ -26,12 +27,28 @@ const styles = {
     input: css`
         margin-bottom: 20px !important;
     `,
+    comments: css`
+        height: 400px;
+        width: 400px;
+        overflow-y: auto;
+        background: #ccc;
+    `,
+    comment: css`
+        width: 300px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    `,
 };
 
+interface IComment {
+    id: string;
+    comment: string;
+}
 
 export const Main = () => {
     const [value, setValue] = useState("");
-    const [list, setList] = useState<string[]>([]);
+    const [list, setList] = useState<IComment[]>([]);
     const [random, setRandom] = useState("");
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,53 +56,61 @@ export const Main = () => {
     };
 
     useEffect(() => {
-        fb
-            .database()
+        fb.database()
             .ref("comments")
-            .once("value")
-            .then((snapshot) => {
+            .on("value", (snapshot => {
                 if (snapshot && snapshot.val()) {
                     const data = Object.values(snapshot.val());
-                    setList(data.map((item: any) => item.comment));
+                    setList(data.map((item: any, index: number) => ({
+                        comment: item.comment,
+                        id: Object.keys(snapshot.val())[index]
+                    })));
+                } else {
+                    setList([]);
                 }
-            });
+            }));
     }, []);
 
     const onClick = () => {
         const newKey = fb.database().ref().push().key;
-        fb
-            .database()
+        if (!value || value === "") {
+            return;
+        }
+        fb.database()
             .ref(`comments/${newKey}`)
             .set({
                 comment: value,
             })
             .then(() => {
                 setValue("");
-                fb
-                    .database()
-                    .ref("comments")
-                    .once("value")
-                    .then((snapshot) => {
-                        const data = Object.values(snapshot.val());
-                        setList(data.map((item: any) => item.comment));
-                    });
             });
     };
 
     const generateRandom = () => {
         const fun = fb.functions().httpsCallable("generateRandom");
         fun().then((result) => setRandom(result.data));
-    }
+    };
+
+    const deleteComment = (id: string) => {
+        fb.database()
+            .ref(`/comments/${id}`)
+            .remove()
+    };
 
     return (
         <div className={styles.container}>
             <Link to={"/users"}>Users</Link>
-            <br/>
-            <br/>
+            <br />
+            <br />
             <div className={styles.flex}>
-                <ul>
+                <ul className={styles.comments}>
                     {list.map((item, index) => (
-                        <li key={index}>{item}</li>
+                        <li key={index}>
+                            <span className={styles.comment}>{item.comment}</span>
+                            <IconButton onClick={() => deleteComment(item.id)}>
+                                <Delete />
+                            </IconButton>
+                        </li>
                     ))}
                 </ul>
                 <Card className={styles.card} variant="outlined">
@@ -95,13 +120,15 @@ export const Main = () => {
                     </Button>
                 </Card>
             </div>
-            <hr/>
+            <hr />
             <div>
-                <div>Random number from cloud functions is: <b>{random}</b></div>
+                <div>
+                    Random number from cloud functions is: <b>{random}</b>
+                </div>
                 <Button color="primary" variant="contained" onClick={generateRandom}>
                     generate
                 </Button>
             </div>
         </div>
     );
-}
+};

@@ -3,10 +3,14 @@ import axios from "axios";
 
 export const replaceCurseWords = functions.database.ref("/comments/{pushId}").onCreate(((snapshot, context) => {
     const original = snapshot.val();
-    const curseWordsList = ["fuck", "shit", "pussy", "dick"];
+    const curseWordsList = ["fuck", "shit", "ass", "dick"];
     const text: string = original.comment;
     const isCurseWordExist = curseWordsList.some((item) => text.includes(item));
     return snapshot.ref.set({comment: isCurseWordExist ? "Comment was blocked because of curse words!" : text});
+}))
+
+export const onDeleteComment = functions.database.ref("/comments/{pushId}").onDelete(((snapshot, context) => {
+    return `Comment #${context.params.pushId} was deleted!`
 }))
 
 export const generateRandom = functions.https.onCall(() => {

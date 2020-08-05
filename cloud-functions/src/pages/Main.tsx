@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Card, TextField, Button, IconButton } from "@material-ui/core";
 import { css } from "emotion";
 import { fb } from "../App";
-import { Link } from "react-router-dom";
 import { Delete } from "@material-ui/icons";
 
 const styles = {
@@ -99,9 +98,6 @@ export const Main = () => {
 
     return (
         <div className={styles.container}>
-            <Link to={"/users"}>Users</Link>
-            <br />
-            <br />
             <div className={styles.flex}>
                 <ul className={styles.comments}>
                     {list.map((item, index) => (

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { fb } from "../App";
 import { FormControl, InputLabel, MenuItem, Select, Card } from "@material-ui/core";
 import { css } from "emotion";
-import { Link } from "react-router-dom";
 
 interface IEmployee {
     id: string;
@@ -15,6 +14,8 @@ interface IEmployee {
 export const Users = () => {
     const [employees, setEmployees] = useState<IEmployee[]>([]);
     const [employee, setEmployee] = useState<IEmployee | undefined>(undefined);
+    const [cardVisible, setCardVisible] = useState(false);
+    const [error, setError] = useState<string | undefined>("")
 
     useEffect(() => {
         const fetchEmployees = fb.functions().httpsCallable("fetchEmployees");
@@ -23,7 +24,16 @@ export const Users = () => {
 
     const handleChange = (e: React.ChangeEvent<{ value: unknown }>) => {
         const fetchEmployee = fb.functions().httpsCallable("fetchEmployee");
-        fetchEmployee(Number(e.target.value)).then((result) => setEmployee(result.data.data));
+        fetchEmployee(Number(e.target.value))
+            .then((result) => {
+                setError(undefined);
+                setEmployee(result.data.data);
+                setCardVisible(true);
+            })
+            .catch(() => {
+                setCardVisible(false);
+                setError("API Error");
+            });
     };
 
     return (
@@ -32,9 +42,6 @@ export const Users = () => {
                 padding: 50px;
             `}
         >
-            <Link to={"/"}>Main</Link>
-            <br/>
-            <br/>
             <FormControl
                 variant="outlined"
                 className={css`
@@ -57,7 +64,8 @@ export const Users = () => {
                     ))}
                 </Select>
             </FormControl>
-            {employee && (
+            {error && <p className={css`color: red;`}>{error}</p>}
+            {cardVisible && employee && (
                 <Card
                     className={css`
                         padding: 20px;

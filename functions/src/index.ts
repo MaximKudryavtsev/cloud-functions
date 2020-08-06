@@ -4,12 +4,12 @@ import * as emailCredentials from "./config/email.json";
 import * as nodemailer from "nodemailer";
 
 
-export const replaceCurseWords = functions.database.ref("/comments/{pushId}").onCreate(((snapshot, context) => {
-    const original = snapshot.val();
+export const replaceCurseWords = functions.database.ref("/comments/{pushId}").onWrite(((snapshot, context) => {
+    const original = snapshot.after.val();
     const curseWordsList = ["fuck", "shit", "ass", "dick"];
     const text: string = original.comment;
     const isCurseWordExist = curseWordsList.some((item) => text.includes(item));
-    return snapshot.ref.set({comment: isCurseWordExist ? "Comment was blocked because of curse words!" : text});
+    return snapshot.after.ref.set({comment: isCurseWordExist ? "Comment was blocked because of curse words!" : text});
 }))
 
 export const onDeleteComment = functions.database.ref("/comments/{pushId}").onDelete(((snapshot, context) => {

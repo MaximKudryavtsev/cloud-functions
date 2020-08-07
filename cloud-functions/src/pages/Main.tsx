@@ -40,8 +40,9 @@ const styles = {
 export const Main = () => {
     const [value, setValue] = useState("");
     const [list, setList] = useState<IComment[]>([]);
-    const [files, setFiles] = useState<string[]>([]);
-    const [random, setRandom] = useState("");
+    const [files, setFiles] = useState<Array<{ file: string }>>([]);
+    const [randomOnCall, setRandomOnCall] = useState("");
+    const [randomOnRequest, setRandomOnRequest] = useState("");
     const inputRef = useRef<HTMLInputElement>(null);
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,8 +69,13 @@ export const Main = () => {
             .ref("files")
             .on("value", (snapshot) => {
                 if (snapshot && snapshot.val()) {
-                    const data: string[] = Object.values(snapshot.val());
-                    setFiles(data);
+                    const data = Object.values(snapshot.val());
+                    console.log(data);
+                    setFiles(
+                        data.map((item: any, index: number) => ({
+                            file: item.file,
+                        })),
+                    );
                 } else {
                     setFiles([]);
                 }
@@ -98,9 +104,18 @@ export const Main = () => {
         inputRef.current.click();
     };
 
-    const generateRandom = () => {
-        const fun = fb.functions().httpsCallable("generateRandom");
-        fun().then((result) => setRandom(result.data));
+    const generateRandomOnCall = () => {
+        const fun = fb.functions().httpsCallable("generateRandomOnCall");
+        fun().then((result) => setRandomOnCall(result.data));
+    };
+
+    const generateRandomOnRequest = async () => {
+        const request = await fetch(
+            "https://us-central1-elliptical-city-210712.cloudfunctions.net/generateRandomOnRequest",
+            { method: "GET" },
+        );
+        const json = await request.json();
+        setRandomOnRequest(json);
     };
 
     const deleteComment = (id: string) => {
@@ -117,7 +132,7 @@ export const Main = () => {
             return;
         }
         fb.storage().ref().child(file.name).put(file);
-    }
+    };
 
     return (
         <div className={styles.container}>
@@ -151,19 +166,33 @@ export const Main = () => {
                     </Card>
                     <ul className={styles.comments}>
                         {files.map((item, index) => (
-                            <li key={index}>{item}</li>
+                            <li key={index}>{item.file}</li>
                         ))}
                     </ul>
                 </div>
             </div>
             <hr />
-            <div>
-                <div>
-                    Random number from cloud functions is: <b>{random}</b>
+            <div
+                className={css`
+                    display: flex;
+                `}
+            >
+                <div className={css`margin-right: 20px`}>
+                    <div>
+                        OnCall: <b>{randomOnCall}</b>
+                    </div>
+                    <Button color="primary" variant="contained" onClick={generateRandomOnCall}>
+                        generate
+                    </Button>
                 </div>
-                <Button color="primary" variant="contained" onClick={generateRandom}>
-                    generate
-                </Button>
+                <div>
+                    <div>
+                        OnRequest: <b>{randomOnRequest}</b>
+                    </div>
+                    <Button color="primary" variant="contained" onClick={generateRandomOnRequest}>
+                        generate
+                    </Button>
+                </div>
             </div>
             <hr />
         </div>

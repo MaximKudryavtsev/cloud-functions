@@ -4,6 +4,7 @@ import { css } from "emotion";
 import { fb } from "../App";
 import { IComment } from "../entity/comment";
 import { Comment } from "../Comment";
+import axios from "axios";
 
 const styles = {
     container: css`
@@ -70,7 +71,6 @@ export const Main = () => {
             .on("value", (snapshot) => {
                 if (snapshot && snapshot.val()) {
                     const data = Object.values(snapshot.val());
-                    console.log(data);
                     setFiles(
                         data.map((item: any, index: number) => ({
                             file: item.file,
@@ -110,12 +110,18 @@ export const Main = () => {
     };
 
     const generateRandomOnRequest = async () => {
-        const request = await fetch(
+        const request = await axios.get(
             "https://us-central1-elliptical-city-210712.cloudfunctions.net/generateRandomOnRequest",
-            { method: "GET" },
+            {
+                headers: {
+                    origin: "http://localhost:3000",
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*"
+                }
+            }
         );
-        const json = await request.json();
-        setRandomOnRequest(json);
+        const data = request.data;
+        setRandomOnRequest(data);
     };
 
     const deleteComment = (id: string) => {
@@ -177,7 +183,11 @@ export const Main = () => {
                     display: flex;
                 `}
             >
-                <div className={css`margin-right: 20px`}>
+                <div
+                    className={css`
+                        margin-right: 20px;
+                    `}
+                >
                     <div>
                         OnCall: <b>{randomOnCall}</b>
                     </div>

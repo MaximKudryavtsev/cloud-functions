@@ -3,14 +3,9 @@ import axios from "axios";
 import * as emailCredentials from "./config/email.json";
 import * as nodemailer from "nodemailer";
 import * as admin from "firebase-admin";
-import * as serviceKey from "./config/service-key.json";
-import { ServiceAccount } from "firebase-admin";
+const cors = require('cors')({origin: true});
 
-admin.initializeApp({
-    credential: admin.credential.cert(serviceKey as ServiceAccount),
-    databaseURL: "https://elliptical-city-210712.firebaseio.com",
-    storageBucket: "elliptical-city-210712.appspot.com"
-})
+admin.initializeApp(functions.config().firebase)
 
 export const replaceCurseWords = functions.database.ref("/comments/{pushId}").onWrite(((snapshot, context) => {
     const original = snapshot.after.val();
@@ -30,8 +25,10 @@ export const generateRandomOnCall = functions.https.onCall(() => {
 })
 
 export const generateRandomOnRequest = functions.https.onRequest((req, resp) => {
-    const number = Math.round(Math.random() * 100);
-    resp.send(String(number));
+    return cors(req, resp, () => {
+        const number = Math.round(Math.random() * 100);
+        resp.send(String(number));
+    })
 })
 
 export const fetchEmployees = functions.https.onCall(async () => {
@@ -81,3 +78,9 @@ export const onDeleteFile = functions.storage.object().onDelete((object) => {
         admin.database().ref(`/files/${key}`).remove();
     })
 })
+
+// export const onDeleteFileBySchedule = functions.pubsub.schedule("every 1 mins").onRun(async () => {
+//     const filesList = await admin.storage().bucket().getFiles();
+//     const files = filesList[0];
+//     await admin.storage().bucket().file(files[0].name).delete();
+// })

@@ -10,7 +10,7 @@ import { Email } from "./pages/Email";
 const config: IConfig = require("./config/config.json");
 export const fb = firebase;
 fb.initializeApp(config.firebase);
-fb.auth().signInWithEmailAndPassword(config.user.email, config.user.password);
+// fb.auth().signInWithEmailAndPassword(config.user.email, config.user.password);
 
 export const App = () => {
     return (

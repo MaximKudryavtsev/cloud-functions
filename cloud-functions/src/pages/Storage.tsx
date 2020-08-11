@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { fb } from "../App";
-import { Button, Card } from "@material-ui/core";
+import { Button, Card, Typography } from "@material-ui/core";
 import { css } from "emotion";
+import { Alert } from "@material-ui/lab";
 
 const styles = {
     container: css`
@@ -14,8 +15,8 @@ const styles = {
     card: css`
         margin: 0 auto;
         padding: 50px;
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-row-gap: 20px;
         height: fit-content;
         box-sizing: border-box;
     `,
@@ -28,33 +29,24 @@ const styles = {
 };
 
 export const Storage = () => {
-    const [files, setFiles] = useState<Array<{ file: string }>>([]);
     const inputRef = useRef<HTMLInputElement>(null);
+    const [file, setFile] = useState<File | null>(null);
+    const [success, setSuccess] = useState(false);
 
-    useEffect(() => {
-        fb.database()
-            .ref("files")
-            .on("value", (snapshot) => {
-                if (snapshot && snapshot.val()) {
-                    const data = Object.values(snapshot.val());
-                    setFiles(
-                        data.map((item: any, index: number) => ({
-                            file: item.file,
-                        })),
-                    );
-                } else {
-                    setFiles([]);
-                }
-            });
-    }, []);
-
-    const onUploadFile = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.item(0);
-        if (!file) {
+    const onChangeFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const choosenFile = event.target.files?.item(0);
+        if (!choosenFile) {
             return;
         }
-        fb.storage().ref().child(file.name).put(file);
+        setFile(choosenFile);
+        setSuccess(false);
     };
+
+    const upload = () => {
+        if (file) {
+            fb.storage().ref().child(file.name).put(file).then(() => setSuccess(true));
+        }
+    }
 
     const onOpenWindow = () => {
         if (!inputRef.current) {
@@ -72,17 +64,18 @@ export const Storage = () => {
                     className={css`
                         display: none;
                     `}
-                    onChange={onUploadFile}
+                    onChange={onChangeFile}
                 />
                 <Button color="primary" variant="contained" onClick={onOpenWindow}>
+                    Choose file
+                </Button>
+                {file && <Typography>{file.name}</Typography>}
+                <Button color="primary" variant="contained" onClick={upload}>
                     Upload
                 </Button>
             </Card>
-            <ul className={styles.comments}>
-                {files.map((item, index) => (
-                    <li key={index}>{item.file}</li>
-                ))}
-            </ul>
+            <br/>
+            {success && <Alert severity={"success"}>File successfully uploaded!</Alert>}
         </div>
     );
 };

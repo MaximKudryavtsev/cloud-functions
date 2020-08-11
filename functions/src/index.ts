@@ -6,6 +6,14 @@ import * as admin from "firebase-admin";
 const cors = require('cors')({origin: true});
 
 admin.initializeApp(functions.config().firebase)
+const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    auth: {
+        user: emailCredentials.email,
+        pass: emailCredentials.password,
+    }
+});
 
 export const replaceCurseWords = functions.database.ref("/comments/{pushId}").onWrite(((snapshot, context) => {
     const original = snapshot.after.val();
@@ -42,14 +50,6 @@ export const fetchEmployee = functions.https.onCall(async (data: number) => {
 })
 
 export const sendEmail = functions.https.onCall(async (data: {email: string; message: string}) => {
-    const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 465,
-        auth: {
-            user: String(emailCredentials.email),
-            pass: String(emailCredentials.password),
-        }
-    });
     await transporter.sendMail({
         from: String(emailCredentials.email),
         to: data.email,
@@ -60,24 +60,31 @@ export const sendEmail = functions.https.onCall(async (data: {email: string; mes
 })
 
 export const handleStorage = functions.storage.object().onFinalize(async (object) => {
-    const filesList = await admin.storage().bucket().getFiles();
-    const files = filesList[0];
-    if (files.length !== 0) {
-        const key = admin.database().ref().push().key;
-        admin.database().ref(`/files/${key}`).set({
-            file: object.name
-        });
+    const name = object.name;
+    console.log("name: ", name);
+    if (name) {
+        const curseWordsList = ["fuck", "shit", "ass", "dick"];
+        const isCurseWordExist = curseWordsList.some((item) => name.includes(item));
+        if (isCurseWordExist) {
+            await admin.storage().bucket().file(name).delete();
+        }
     }
 })
 
 export const onDeleteFile = functions.storage.object().onDelete((object) => {
-    admin.database().ref("files").once("value", (snapshot) => {
-        const data = snapshot.val();
-        const index = Object.values(data).findIndex((item: any) => item.file === object.name);
-        const key = Object.keys(data)[index];
-        admin.database().ref(`/files/${key}`).remove();
-    })
+    console.info(`File ${object.name} was deleted`);
+    return `File ${object.name} was deleted`;
 })
+
+export const onCreateUser = functions.auth.user().onCreate(async (user) => {
+    await transporter.sendMail({
+        from: String(emailCredentials.email),
+        to: user.email,
+        subject: "Successful sign-up",
+        text: `Hello, ${user.email}`,
+        html: `Hello, ${user.email}. We glad to see you in our service.`
+    })
+});
 
 // export const onDeleteFileBySchedule = functions.pubsub.schedule("every 1 mins").onRun(async () => {
 //     const filesList = await admin.storage().bucket().getFiles();

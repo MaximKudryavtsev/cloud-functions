@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { IComment } from "./entity/comment";
+import { IComment } from "../entity/comment";
 import { IconButton, TextField } from "@material-ui/core";
 import { Delete, Edit, Save } from "@material-ui/icons";
 import { css } from "emotion";
